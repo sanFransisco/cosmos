@@ -1,0 +1,51 @@
+<ng-container>
+  <div class="text-center">
+    <form [formGroup]="editForm"  [ngStyle]="{height:'100%'}">
+      <h3>Create {{nothingType.value == "White" ? "White" : "Black"}} Form</h3>
+      <div>
+        <mat-form-field>
+          <mat-label>Select Nothing</mat-label>
+          <select formControlName="nothingType" matNativeControl>
+            <option >White</option>
+            <option >Black</option>   
+          </select>
+        </mat-form-field>
+      </div>
+   
+      <div *ngIf="nothingType.value == 'Black'; else elseBlock">                        
+              <mat-checkbox formControlName="black">isBlackHole</mat-checkbox>     
+      </div>      
+      <ng-template #elseBlock>
+          <div>
+            
+              <mat-form-field >
+                  <mat-label>creator</mat-label>
+                  <input matInput formControlName="white" placeholder="">
+              </mat-form-field>
+          </div>
+      </ng-template>
+      <div>
+        <mat-form-field >
+          <mat-label>name</mat-label>
+          <input matInput formControlName="name" placeholder="">
+      </mat-form-field>      
+      </div>
+      <div>
+        <mat-form-field >
+          <mat-label>description</mat-label>
+          <input matInput formControlName="description" placeholder="">
+      </mat-form-field>
+      </div>
+ <div>
+
+</div>
+
+
+
+<div >
+    <button (click)="handleSubmit()" mat-button><span [ngStyle]="{width:'20px'}"> Submit</span></button>
+</div>
+
+</form>
+</div>
+</ng-container>

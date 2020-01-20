@@ -1,0 +1,10 @@
+/* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%;padding: 5px;size: 18px;}
+.mat-row{background-color: #141b26;}
+form {   
+    color:#9acc14;
+}
+
+.mat-cell{color:#9acc14;}
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
