@@ -4,10 +4,11 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public abstract class Nothing {
+public abstract class Nothing{
 
     @JsonProperty("name")
     private String name;
@@ -19,18 +20,21 @@ public abstract class Nothing {
     private static final Random rnd = new Random(10000);
 
     @JsonProperty("id")
-    protected static int id;
+    private static int id;
 
     protected Nothing() {
-        id = getUniqueId();
+        this.id = getUniqueId();
     }
 
-    public void copy(HashMap<String,String> fields) {
+    public void copy(Map<String,String> fields) {
 
         this.name = fields.get("name");
         this.description = fields.get("description");
     }
 
+    public String getId(){
+        return  "" + this.id;
+    }
     private static int getUniqueId() {
         return rnd.nextInt();
     }

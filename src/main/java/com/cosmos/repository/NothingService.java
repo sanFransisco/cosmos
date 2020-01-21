@@ -2,20 +2,26 @@ package com.cosmos.repository;
 
 import com.cosmos.model.Black;
 import com.cosmos.model.Nothing;
-import java.util.HashMap;
+
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class NothingService {
-    private HashMap<Integer, Nothing> pool;
+    //In-memory Nothings
+    private ArrayList<Nothing> pool;
 
     public NothingService() {
-        this.pool = new HashMap<>();
+        //Initialize with size 100
+        this.pool = new ArrayList<Nothing>(100);
     }
 
     public boolean addNothing(Nothing nothing) {
         boolean res = false;
-
+        if(nothing != null) {
+            this.pool.add(nothing);
+            res = true;
+        }
         return res;
     }
 
@@ -32,7 +38,7 @@ public class NothingService {
     }
 
     public List<Nothing> getAllNothings() {
-        return this.pool.values().stream().collect(Collectors.toList());
+        return this.pool.stream().collect(Collectors.toList());
     }
 
 

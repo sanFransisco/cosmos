@@ -44,18 +44,21 @@ export class EditformComponent implements OnInit {
 
   handleSubmit(){
     debugger;
-    if(this.validateForm()){
+   
       var name = this.editForm.get("name").value;
       var description = this.editForm.get("description").value;
     
       if(this.nothingType.value == "White"){
-      this.create.emit({type:"White", data:{creator:this.editForm.get("white").value, name:name, description:description}});
-      }
-      else{
-        this.create.emit({type:"Black", data:{isBlackHole:this.editForm.get("black").value, name:name, description:description}});
-      }
+        if(this.whiteValid()){
+          this.create.emit({type:"White", data:{creator:this.editForm.get("white").value, name:name, description:description}});
+       }      
+    }else if(this.nothingType.value == "Black"){
+      if(this.blackValid()){
+      this.create.emit({type:"Black", data:{isBlackHole:this.editForm.get("black").value, name:name, description:description}});
     }
   }
+}
+  
   
   constructor(appConfig:AppConfigService) { 
 
@@ -72,4 +75,16 @@ export class EditformComponent implements OnInit {
   ngOnInit() {
   }
 
+basicValidation(){
+  return this.editForm.get("name").valid && this.editForm.get("description").valid
+}
+
+  whiteValid(){
+
+    return this.basicValidation()  && this.editForm.get("white").valid;
+  }
+
+  blackValid(){
+    return this.basicValidation() && this.editForm.get("black").valid;
+  }
 }

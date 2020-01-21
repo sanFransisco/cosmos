@@ -46,9 +46,12 @@ export class DatatableComponent implements OnInit {
   onCreate(evt:any){
     debugger;
     this.http.addNothing(evt.type, evt.data).subscribe(data=>{
-      if(data instanceof Array)
-        this.dataSource.push(evt.data);
+      if(data instanceof Object){
+        debugger;
+        this.dataSource =  [...this.dataSource];
+        this.dataSource.push(data);
         alert("create successed");
+      }
     },err=>{
         alert("create failed");
     });
@@ -68,8 +71,10 @@ export class DatatableComponent implements OnInit {
   }
 
   onModelChange(data:any){
-    this.http.updateNothing(data.id, data).subscribe(data=>{
-      alert("update successed");
+    this.http.updateNothing(data.id, data).subscribe(data=>{      
+      if(data instanceof Array){
+        alert("update successed");
+      }
     },err=>{
       alert("update failed");
     })

@@ -41,11 +41,19 @@ export class HttpService {
       "Access-Control-Allow-Origin":"*"
       
   });
-    return this.http.post(this.appConfig.cosmosBaseURL + this.CRUD + "create",{headers:headers} ,{params:{type ,nothing}});
+    return this.http.post(this.appConfig.cosmosBaseURL + this.CRUD + "create",JSON.stringify({nothing,type}), {headers:headers});
 
   }
 
   public deleteNothing(nothingID:number):Observable<any>{
-    return this.http.delete(this.appConfig.cosmosBaseURL + this.CRUD + "delete", {params:{id:JSON.stringify(nothingID)}});
+    var headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      "Accept": "application/json",
+      "Access-Control-Allow-Origin":"*"
+      
+  });
+
+    const options = {body:{id:nothingID},headers:headers};
+    return this.http.delete(this.appConfig.cosmosBaseURL + this.CRUD + "delete", options);
   }
 }
