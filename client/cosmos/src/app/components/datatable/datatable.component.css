@@ -1,4 +1,10 @@
 th.mat-header-cell{text-align: center !important;}
+
+#no-data{
+    background-color: #141b26;
+    color:white;
+}
+
 .blacked{
     background-color: black;
 }

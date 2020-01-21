@@ -29,8 +29,8 @@ export class HttpService {
     return this.http.post<NothingImpl>(this.appConfig.cosmosBaseURL + this.CRUD + "update", JSON.stringify(id));
   }
 
-  public updateNothing(id: number, nothing:NothingImpl):Observable<any>{
-    return this.http.post(this.appConfig.cosmosBaseURL + this.CRUD + "update", JSON.stringify({id,nothing}));
+  public updateNothing(id: number, nothing:NothingImpl):Observable<NothingImpl[]>{
+    return this.http.post<NothingImpl[]>(this.appConfig.cosmosBaseURL + this.CRUD + "update", JSON.stringify({id,nothing}));
   }
 
   public addNothing(type:string, nothing:any):Observable<any>{
@@ -45,7 +45,7 @@ export class HttpService {
 
   }
 
-  public deleteNothing(nothingID:number):Observable<any>{
+  public deleteNothing(nothingID:number):Observable<NothingImpl[]>{
     var headers = new HttpHeaders({
       'Content-Type': 'application/json',
       "Accept": "application/json",
@@ -54,6 +54,6 @@ export class HttpService {
   });
 
     const options = {body:{id:nothingID},headers:headers};
-    return this.http.delete(this.appConfig.cosmosBaseURL + this.CRUD + "delete", options);
+    return this.http.delete<NothingImpl[]>(this.appConfig.cosmosBaseURL + this.CRUD + "delete", options);
   }
 }

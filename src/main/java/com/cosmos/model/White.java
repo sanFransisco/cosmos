@@ -1,27 +1,30 @@
 package com.cosmos.model;
 
-import java.util.HashMap;
 import java.util.Map;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonProperty;
-
-@JsonIgnoreProperties(ignoreUnknown = true)
+//Represent White Nothing
 public class White extends Nothing {
 
-    @JsonProperty("creator")
     private String creator;
 
-    public White(Map<String,String> fields){
-      super();
-      this.copy(fields);
+    public White(Map<String, String> fields) {
+        super();
+        this.copy(fields);
     }
 
     @Override
-    public void copy(Map<String,String> nothing) {
+    public void copy(Map<String, String> nothing) {
         super.copy(nothing);
-        if(nothing.containsKey("creator"))
-            this.creator= nothing.get("creator");
+        if (nothing.containsKey("creator"))
+            this.creator = nothing.get("creator");
 
+    }
+
+    @Override
+    public Map<String, String> toJson() {
+
+        Map<String, String> json = super.toJson();
+        json.put("creator", this.creator);
+        return json;
     }
 }

@@ -18,27 +18,33 @@ public class NothingService {
 
     public boolean addNothing(Nothing nothing) {
         boolean res = false;
-        if(nothing != null) {
+        if (nothing != null) {
             this.pool.add(nothing);
             res = true;
         }
         return res;
     }
 
-    public boolean updateNothing(Integer id) {
-        boolean res = false;
-        Nothing nothing = getNothingById(id);
+//    public boolean updateNothing(Integer id) {
+//        boolean res = false;
+//        Nothing nothing = getNothingById(id);
+//
+//        return res;
+//    }
 
-        return res;
-    }
-
-    public Nothing getNothingById(Integer id) {
+    public boolean deleteNothingById(String id) {
+        ArrayList deleteItem = new ArrayList<Nothing>(1);
         //can return null
-        return this.pool.get(id);
+        this.pool.forEach((nothing) -> {
+            if (nothing.getId().equals(id)) {
+                deleteItem.add(nothing);
+            }
+        });
+       return this.getAllNothings().removeAll(deleteItem);
     }
 
     public List<Nothing> getAllNothings() {
-        return this.pool.stream().collect(Collectors.toList());
+        return this.pool;
     }
 
 
