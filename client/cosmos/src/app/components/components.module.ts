@@ -25,4 +25,4 @@ import {
     MatButtonModule,
     MatCheckboxModule]
 })
-export class ComponentsModule { }
+export class VendorComponentsModule { }
